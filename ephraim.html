@@ -1,0 +1,137 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Adekunle Ephraim Oluwajomiloju — Front-End Developer & Streamer.">
+  <title>Ephraimjim 001 | Developer × Streamer</title>
+  <style>
+    :root{
+      --bg:#05030b; --panel:rgba(16,12,31,.72); --text:#f8f7ff; --muted:#aaa4c2;
+      --cyan:#00f5ff; --pink:#ff2bd6; --purple:#8b5cf6; --lime:#b8ff00;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.055;z-index:50;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    #canvas{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
+    .aurora{position:fixed;inset:-30%;z-index:-1;filter:blur(70px);background:conic-gradient(from 0deg,transparent,#6d28d9,transparent,#00d9ff,transparent,#ff00aa,transparent);opacity:.17;animation:spin 18s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(1100px,92%);padding:12px 16px;border:1px solid #ffffff18;border-radius:22px;background:#08060fbb;backdrop-filter:blur(18px);z-index:40;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:900;letter-spacing:-1px}.logo b{color:var(--cyan);text-shadow:0 0 18px var(--cyan)}
+    .navlinks{display:flex;gap:20px;color:#c7c2d9;font-size:14px}.navlinks a:hover{color:#fff}
+    .hero{min-height:100vh;display:grid;place-items:center;padding:120px 7% 80px;position:relative}
+    .hero-inner{max-width:1100px;width:100%;text-align:center}
+    .pill{display:inline-flex;gap:9px;align-items:center;padding:8px 14px;border:1px solid #ffffff20;background:#ffffff08;border-radius:999px;color:#d7d1ea;font-size:13px;animation:float 3s ease-in-out infinite}
+    .dot{width:8px;height:8px;background:#44ff77;border-radius:50%;box-shadow:0 0 15px #44ff77}
+    @keyframes float{50%{transform:translateY(-7px)}}
+    h1{font-size:clamp(52px,10vw,125px);line-height:.86;letter-spacing:-.075em;margin:28px 0 24px;text-transform:uppercase}
+    .gradient{background:linear-gradient(90deg,#fff,var(--cyan),#fff,var(--pink));background-size:300%;-webkit-background-clip:text;color:transparent;animation:shine 5s linear infinite}
+    @keyframes shine{to{background-position:300%}}
+    .subtitle{font-size:clamp(18px,2.3vw,27px);color:#c2bdd3;max-width:750px;margin:auto;line-height:1.5}
+    .cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:34px}
+    .btn{padding:14px 21px;border-radius:14px;border:1px solid #ffffff22;background:#ffffff0c;font-weight:800;transition:.25s;position:relative;overflow:hidden}
+    .btn.primary{background:linear-gradient(100deg,var(--cyan),var(--purple));color:#05030b;border:0;box-shadow:0 0 35px #00f5ff35}
+    .btn:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 15px 40px #0008}
+    .marquee{border-block:1px solid #ffffff13;background:#ffffff05;overflow:hidden;white-space:nowrap;padding:13px 0}
+    .track{display:inline-block;animation:marquee 20s linear infinite;font-weight:900;letter-spacing:.12em;color:#aaa4c2}
+    .track span{margin:0 22px;color:var(--cyan)}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    section{padding:110px 7%}.wrap{max-width:1100px;margin:auto}
+    .eyebrow{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+    h2{font-size:clamp(38px,6vw,70px);letter-spacing:-.05em;margin-bottom:42px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(145deg,#ffffff0c,#ffffff03);border:1px solid #ffffff12;border-radius:25px;padding:28px;position:relative;overflow:hidden;transition:.3s;min-height:200px}
+    .card:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--cyan);filter:blur(75px);opacity:.08;right:-70px;top:-70px}
+    .card:hover{transform:translateY(-10px) rotateX(2deg);border-color:#00f5ff55;box-shadow:0 25px 60px #0007}
+    .card h3{font-size:22px;margin-bottom:12px}.card p{color:var(--muted);line-height:1.7}
+    .icon{font-size:34px;margin-bottom:25px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}.skill{padding:10px 14px;border:1px solid #ffffff17;border-radius:12px;background:#ffffff08;color:#ddd7eb}
+    .projects{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+    .project{min-height:350px}.project.big{background:linear-gradient(135deg,#091b2b,#170b2b)}
+    .project .tag{display:inline-block;padding:6px 9px;border-radius:8px;background:#00f5ff15;color:var(--cyan);font-size:11px;font-weight:900}
+    .project h3{font-size:36px;margin:28px 0 10px}
+    .stream{border:1px solid #ff2bd633;background:linear-gradient(135deg,#16091c,#0b0715);padding:35px;border-radius:28px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;position:relative;overflow:hidden}
+    .stream:after{content:"LIVE";position:absolute;right:-35px;top:25px;transform:rotate(35deg);padding:7px 55px;background:#ff2bd6;font-size:11px;font-weight:900;box-shadow:0 0 30px #ff2bd6}
+    .socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+    .social{padding:12px 16px;border:1px solid #ffffff18;border-radius:13px;background:#ffffff08;font-weight:800;transition:.2s}.social:hover{border-color:var(--pink);transform:translateY(-4px)}
+    footer{padding:50px 7%;border-top:1px solid #ffffff10;color:#777187;text-align:center}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
+    .cursor{position:fixed;width:18px;height:18px;border:1px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:100;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .15s,height .15s}
+    @media(max-width:800px){.navlinks{display:none}.grid,.projects{grid-template-columns:1fr}.stream{grid-template-columns:1fr}.hero{text-align:center}section{padding:80px 6%}}
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas><div class="aurora"></div><div class="noise"></div><div class="cursor" id="cursor"></div>
+
+<nav class="nav">
+  <a class="logo" href="#top">EPHRAIM<b>.001</b></a>
+  <div class="navlinks"><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#stream">Streaming</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="pill"><span class="dot"></span> AVAILABLE FOR CREATIVE PROJECTS</div>
+    <h1><span class="gradient">ADEKUNLE<br>EPHRAIM</span></h1>
+    <p class="subtitle">Front-End Developer <b>×</b> Streamer — building fast, interactive digital experiences while creating content for the gaming community.</p>
+    <div class="cta"><a class="btn primary" href="#work">Explore My Work ↘</a><a class="btn" href="#stream">Watch the Stream ◉</a></div>
+  </div>
+</header>
+
+<div class="marquee"><div class="track">FRONT-END DEVELOPMENT <span>✦</span> UI/UX <span>✦</span> GAMING <span>✦</span> LIVE STREAMING <span>✦</span> CREATIVE CODE <span>✦</span> EPHRAIMJIM 001 <span>✦</span> FRONT-END DEVELOPMENT <span>✦</span> UI/UX <span>✦</span> GAMING <span>✦</span> LIVE STREAMING <span>✦</span></div></div>
+
+<section id="about"><div class="wrap reveal">
+  <div class="eyebrow">01 / About</div><h2>Code it. <span class="gradient">Animate it.</span><br>Stream it.</h2>
+  <div class="grid">
+    <div class="card"><div class="icon">⚡</div><h3>Front-End</h3><p>I create responsive interfaces with strong visual design, smooth interactions and a focus on great user experience.</p></div>
+    <div class="card"><div class="icon">🎮</div><h3>Streamer</h3><p>Gaming, reactions and live content under the creator name <b>ephraimjim 001</b>.</p></div>
+    <div class="card"><div class="icon">🚀</div><h3>Creative Energy</h3><p>My goal is to mix technology, entertainment and motion into experiences people remember.</p></div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap reveal">
+  <div class="eyebrow">02 / Toolkit</div><h2>My <span class="gradient">stack.</span></h2>
+  <div class="card"><div class="skills">
+    <span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span><span class="skill">Responsive Design</span><span class="skill">UI/UX</span><span class="skill">Animations</span><span class="skill">Git & GitHub</span><span class="skill">Creative Coding</span><span class="skill">Web Performance</span>
+  </div></div>
+</div></section>
+
+<section id="work"><div class="wrap reveal">
+  <div class="eyebrow">03 / Selected Work</div><h2>Built for the <span class="gradient">screen.</span></h2>
+  <div class="projects">
+    <article class="card project big"><span class="tag">FEATURED CONCEPT</span><h3>Next-gen Creator Hub</h3><p>A cinematic creator dashboard concept with animated stats, content cards, stream status and a community-first interface.</p></article>
+    <article class="card project"><span class="tag">EXPERIMENT</span><h3>Motion UI</h3><p>Interactive micro-animations and hover effects designed to make a static page feel alive.</p></article>
+  </div>
+</div></section>
+
+<section id="stream"><div class="wrap reveal">
+  <div class="eyebrow">04 / Creator Mode</div>
+  <div class="stream">
+    <div><h2 style="margin-bottom:10px">Catch me <span class="gradient">live.</span></h2><p style="color:var(--muted);line-height:1.7">Follow <b>ephraimjim 001</b> for streams, gaming content and creator updates.</p>
+      <div class="socials">
+        <a class="social" href="https://www.twitch.tv/ephraimjim" target="_blank">🟣 Twitch</a>
+        <a class="social" href="https://www.tiktok.com/@ephraimjim001" target="_blank">♪ TikTok</a>
+        <a class="social" href="https://www.youtube.com/@ephraimjim" target="_blank">▶ YouTube</a>
+      </div>
+    </div>
+    <div style="font-size:80px;filter:drop-shadow(0 0 25px #ff2bd6)">◉</div>
+  </div>
+</div></section>
+
+<footer>© 2026 Adekunle Ephraim Oluwajomiloju · <b>ephraimjim 001</b> · Built with code & caffeine.</footer>
+
+<script>
+const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');let w,h,pts=[];
+function resize(){w=canvas.width=innerWidth*devicePixelRatio;h=canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';pts=Array.from({length:70},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35*devicePixelRatio,vy:(Math.random()-.5)*.35*devicePixelRatio,r:Math.random()*2+1}))}
+resize();addEventListener('resize',resize);
+function loop(){ctx.clearRect(0,0,w,h);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,245,255,.55)';ctx.fill()}
+for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){let a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<150*devicePixelRatio){ctx.strokeStyle=`rgba(139,92,246,${.12*(1-d/(150*devicePixelRatio))})`;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}requestAnimationFrame(loop)}loop();
+
+const observer=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>observer.observe(x));
+const cursor=document.getElementById('cursor');addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+document.querySelectorAll('a,.card,.btn').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='34px';cursor.style.height='34px'});el.addEventListener('mouseleave',()=>{cursor.style.width='18px';cursor.style.height='18px'})});
+</script>
+</body>
+</html>
